@@ -100,7 +100,7 @@ variable "vm_instance" {
       size      = optional(string, "20G")
       format    = optional(string, "raw")
       cache     = optional(string, "none")
-      backup    = optional(number, 0)
+      backup    = optional(bool, false)
       iothread  = optional(number, 1)
       replicate = optional(number, 0)
       ssd       = optional(number, 1)
