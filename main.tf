@@ -12,15 +12,15 @@ module "random_target_node" {
 
 module "proxmox_vm" {
   source  = "lsampaioweb/vm-qemu/proxmox"
-  version = "1.0.3"
+  version = "1.0.5"
 
   for_each = var.vm_instance
 
   # General
   target_node = (each.value.target_node != null) ? each.value.target_node : module.random_target_node[each.key].formatted_result
 
-  name = (each.value.name != null) ? each.value.name : join("-",
-  [local.environment_sanitized, local.project_sanitized, each.key])
+  name = (each.value.name != null) ? each.value.name : join(var.separator,
+  [local.environment_short_name, local.project_sanitized, each.key])
 
   vmid = each.value.vmid
 
