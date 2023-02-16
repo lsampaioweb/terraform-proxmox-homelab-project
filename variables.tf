@@ -71,7 +71,7 @@ variable "vm_instance" {
 
     ## OS
     tablet  = optional(bool, false)
-    boot    = optional(string, "order=scsi0")
+    boot    = optional(string, "order=scsi0;net0")
     agent   = optional(number, 1)
     qemu_os = optional(string, "l26")
     numa    = optional(bool)
