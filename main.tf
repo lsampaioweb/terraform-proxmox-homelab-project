@@ -1,6 +1,6 @@
 module "random_target_node" {
   source  = "lsampaioweb/target-node/random"
-  version = "1.0.3"
+  version = "1.0.4"
 
   for_each = var.vm_instance
 
@@ -12,7 +12,7 @@ module "random_target_node" {
 
 module "proxmox_vm" {
   source  = "lsampaioweb/vm-qemu/proxmox"
-  version = "1.0.7"
+  version = "1.0.13"
 
   for_each = var.vm_instance
 
