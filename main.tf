@@ -1,43 +1,47 @@
 module "random_target_node" {
   source  = "lsampaioweb/target-node/random"
-  version = "1.0.4"
+  version = "1.0.5"
 
-  for_each = var.vm_instance
+  for_each = var.vm_instances
 
-  min         = var.random_target_node_min
-  max         = var.random_target_node_max
-  node_prefix = var.random_target_node_prefix
-  node_scale  = var.random_target_node_scale
+  min       = var.random_target_node.min
+  max       = var.random_target_node.max
+  prefix    = var.random_target_node.prefix
+  scale     = var.random_target_node.scale
+  separator = var.random_target_node.separator
 }
 
 module "proxmox_vm" {
   source  = "lsampaioweb/vm-qemu/proxmox"
   version = "1.0.13"
 
-  for_each = var.vm_instance
+  for_each = var.vm_instances
 
   # General
   target_node = (each.value.target_node != null) ? each.value.target_node : module.random_target_node[each.key].formatted_result
 
-  name = (each.value.name != null) ? each.value.name : join(var.separator,
+  name = (each.value.name != null) ? each.value.name : join(var.random_target_node.separator,
   [local.environment_short_name, local.project_sanitized, each.key])
 
-  vmid = each.value.vmid
-
-  description = (each.value.description != null) ? each.value.description : join(" ",
-  ["VM created for the project", var.project, each.key])
-
+  vmid     = each.value.vmid
   bios     = each.value.bios
   onboot   = each.value.onboot
   startup  = each.value.startup
   oncreate = each.value.oncreate
-  pool     = (each.value.pool != null) ? each.value.pool : var.environment
+
+  description = (each.value.description != null) ? each.value.description : join(" ",
+  ["VM created for the project", var.project, each.key])
+
+  pool = (each.value.pool != null) ? each.value.pool : var.environment
 
   # Clone
   os_type      = each.value.os_type
   clone        = each.value.clone
   full_clone   = each.value.full_clone
   force_create = each.value.force_create
+
+  # Cloud-Init
+  cloud_init = each.value.cloud_init
 
   # OS
   tablet  = each.value.tablet
@@ -64,7 +68,9 @@ module "proxmox_vm" {
   disks = each.value.disks
 
   # Networks
-  networks = each.value.networks
+  define_connection_info = each.value.define_connection_info
+  os_network_config      = each.value.os_network_config
+  networks               = each.value.networks
 
   # High Availability
   hagroup = each.value.hagroup
