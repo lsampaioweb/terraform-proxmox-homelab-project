@@ -1,17 +1,19 @@
 terraform {
   required_providers {
     random = {
+      # https://registry.terraform.io/providers/hashicorp/random/latest
       source  = "hashicorp/random"
-      version = "3.4.3"
+      version = "3.6.2"
     }
     proxmox = {
+      # https://registry.terraform.io/providers/Telmate/proxmox/latest
       source  = "Telmate/proxmox"
-      version = "2.9.14"
+      version = "3.0.1-rc3"
     }
   }
 }
 
 provider "proxmox" {
-  pm_api_url      = "https://kvm.lan.homelab:8006/api2/json"
+  pm_api_url      = "https://edge-pve-01.lan.homelab:8006/api2/json"
   pm_api_token_id = "terraform@pve!terraform"
 }

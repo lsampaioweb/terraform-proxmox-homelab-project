@@ -10,6 +10,8 @@ locals {
 
   # "staging"    -> "stgng"  -> "stg"
   # "production" -> "prdctn" -> "prd"
+  # "home"       -> "hm"     -> "hm"
+  # "homelab"    -> "hmlb"   -> "hml"
   regex_digit_or_letter  = "/([0-9AEIOUaeiou])/"
   environment_short_name = substr(replace(local.environment_sanitized, local.regex_digit_or_letter, ""), 0, var.environment_short_name_maximum_size)
 }

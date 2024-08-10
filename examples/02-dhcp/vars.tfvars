@@ -6,10 +6,10 @@ test_cases = {
     vm_instances = {
       "01" = {
         # Required:
-        clone = "ubuntu-22-04-server-standard"
+        clone = "ubuntu-24-04-server-standard"
 
         # Optional:
-        target_node = "kvm-01"
+        target_node = "pve-01"
       }
     }
 

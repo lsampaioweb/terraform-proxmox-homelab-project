@@ -9,7 +9,7 @@ variable "random_target_node" {
     # The maximum inclusive value of the range.
     max = optional(number, 7)
     # The prefix of the Proxmox nodes.
-    prefix = optional(string, "kvm")
+    prefix = optional(string, "pve")
     # The number of 0 (zeros) to fill in.
     scale = optional(string, "%.2d")
     # The separator from the node name and the random integer result.

@@ -6,7 +6,7 @@ test_cases = {
     vm_instances = {
       "01" = {
         # Required:
-        clone = "ubuntu-22-04-desktop-standard"
+        clone = "ubuntu-24-04-desktop-standard"
 
         # Optional:
         description = "VM with multiple networks."

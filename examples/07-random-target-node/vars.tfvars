@@ -6,7 +6,7 @@ test_cases = {
     random_target_node = {
       min       = 1
       max       = 7
-      prefix    = "kvm"
+      prefix    = "pve"
       scale     = "%.2d"
       separator = "-"
     }
@@ -14,7 +14,7 @@ test_cases = {
     vm_instances = {
       "01" = {
         # Required:
-        clone = "ubuntu-22-04-server-standard"
+        clone = "ubuntu-24-04-server-standard"
       }
     }
 

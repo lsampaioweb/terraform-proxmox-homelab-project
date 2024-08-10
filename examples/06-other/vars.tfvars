@@ -6,7 +6,7 @@ test_cases = {
     vm_instances = {
       "01" = {
         # Required:
-        clone = "ubuntu-22-04-server-standard"
+        clone = "ubuntu-24-04-server-standard"
 
         # Optional:
         description = "VM with several different values."
