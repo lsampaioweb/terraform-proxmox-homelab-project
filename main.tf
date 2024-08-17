@@ -27,7 +27,7 @@ module "proxmox_vm" {
   bios     = each.value.bios
   onboot   = each.value.onboot
   startup  = each.value.startup
-  oncreate = each.value.oncreate
+  vm_state = each.value.vm_state
 
   description = (each.value.description != null) ? each.value.description : join(" ",
   ["VM created for the project", var.project, each.key])
@@ -64,7 +64,7 @@ module "proxmox_vm" {
   memory  = each.value.memory
   balloon = each.value.balloon
 
-  # Hard Disk  
+  # Hard Disk
   disks = each.value.disks
 
   # Networks
