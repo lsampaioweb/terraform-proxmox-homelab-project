@@ -62,7 +62,7 @@ variable "vm_instances" {
     ## CPU
     cpu     = optional(string, "x86-64-v2-AES")
     sockets = optional(number, 1)
-    cores   = optional(number, 6)
+    cores   = optional(number, 4)
     vcpus   = optional(number, 2)
 
     ## Memory
