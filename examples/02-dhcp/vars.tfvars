@@ -1,7 +1,7 @@
 test_cases = {
   "01" = {
     project     = "dhcp"
-    environment = "Staging"
+    environment = "Production"
 
     vm_instances = {
       "01" = {
@@ -9,10 +9,10 @@ test_cases = {
         clone = "ubuntu-24-04-server-standard"
 
         # Optional:
-        target_node = "pve-01"
+        target_node = "edge-pve-01"
       }
     }
 
-    expected = "stg-dhcp-01"
+    expected = "prd-dhcp-01"
   }
 }

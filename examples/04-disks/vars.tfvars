@@ -11,23 +11,42 @@ test_cases = {
         # Optional:
         description = "VM with multiple disks."
 
+        boot = "order=scsi0;net0"
+
         disks = {
-          "01" = {
-          },
-          "02" = {
-            storage = "Ceph_Gold"
-          },
-          "03" = {
-            storage = "Ceph_Silver"
-            size    = "15G"
-            cache   = "writeback"
-          },
-          "04" = {
-            storage   = "Ceph_Bronze"
-            size      = "10G"
-            ssd       = 0
-            backup    = true
-            replicate = 1
+          scsi = {
+            # disk0 (required)
+            scsi0 = {
+              disk = [{}]
+            }
+            # disk1 (optional)
+            scsi1 = {
+              disk = []
+            }
+            # disk2 (optional)
+            scsi2 = {
+              disk = [{
+                size    = "15G"
+                storage = "Ceph_Gold"
+              }]
+            }
+            scsi3 = {
+              disk = [{
+                backup     = true
+                cache      = ""
+                discard    = true
+                emulatessd = true
+                format     = "raw"
+                iothread   = true
+                replicate  = true
+                size       = "16G"
+                storage    = "Ceph_Gold"
+              }]
+            }
+            # init-cloud drive (optional)
+            scsi10 = {
+              cloudinit = [{}]
+            }
           }
         }
       }

@@ -1,6 +1,6 @@
 module "random_target_node" {
   source  = "lsampaioweb/target-node/random"
-  version = "1.0.5"
+  version = "1.0.6"
 
   for_each = var.vm_instances
 
@@ -13,7 +13,7 @@ module "random_target_node" {
 
 module "proxmox_vm" {
   source  = "lsampaioweb/vm-qemu/proxmox"
-  version = "1.0.13"
+  version = "1.0.14"
 
   for_each = var.vm_instances
 
@@ -23,11 +23,12 @@ module "proxmox_vm" {
   name = (each.value.name != null) ? each.value.name : join(var.random_target_node.separator,
   [local.environment_short_name, local.project_sanitized, each.key])
 
-  vmid     = each.value.vmid
-  bios     = each.value.bios
-  onboot   = each.value.onboot
-  startup  = each.value.startup
-  vm_state = each.value.vm_state
+  vmid       = each.value.vmid
+  bios       = each.value.bios
+  onboot     = each.value.onboot
+  startup    = each.value.startup
+  vm_state   = each.value.vm_state
+  protection = each.value.protection
 
   description = (each.value.description != null) ? each.value.description : join(" ",
   ["VM created for the project", var.project, each.key])
@@ -39,9 +40,6 @@ module "proxmox_vm" {
   clone        = each.value.clone
   full_clone   = each.value.full_clone
   force_create = each.value.force_create
-
-  # Cloud-Init
-  cloud_init = each.value.cloud_init
 
   # OS
   tablet  = each.value.tablet
@@ -64,9 +62,6 @@ module "proxmox_vm" {
   memory  = each.value.memory
   balloon = each.value.balloon
 
-  # Hard Disk
-  disks = each.value.disks
-
   # Networks
   define_connection_info = each.value.define_connection_info
   os_network_config      = each.value.os_network_config
@@ -75,4 +70,10 @@ module "proxmox_vm" {
   # High Availability
   hagroup = each.value.hagroup
   hastate = each.value.hastate
+
+  # Hard Disk
+  disks = each.value.disks
+
+  # Cloud-Init
+  cloud_init = each.value.cloud_init
 }

@@ -5,8 +5,8 @@ test_cases = {
 
     random_target_node = {
       min       = 1
-      max       = 7
-      prefix    = "pve"
+      max       = 2
+      prefix    = "edge-pve"
       scale     = "%.2d"
       separator = "-"
     }
