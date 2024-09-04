@@ -13,7 +13,7 @@ module "random_target_node" {
 
 module "proxmox_vm" {
   source  = "lsampaioweb/vm-qemu/proxmox"
-  version = "1.0.14"
+  version = "1.0.15"
 
   for_each = var.vm_instances
 
@@ -30,8 +30,7 @@ module "proxmox_vm" {
   vm_state   = each.value.vm_state
   protection = each.value.protection
 
-  description = (each.value.description != null) ? each.value.description : join(" ",
-  ["VM created for the project", var.project, each.key])
+  description = (each.value.description != null) ? each.value.description : join(" ", ["VM created for the project", var.project, each.key])
 
   pool = (each.value.pool != null) ? each.value.pool : var.environment
 
