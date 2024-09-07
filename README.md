@@ -36,7 +36,7 @@ Run these commands on the computer that is running Terraform:
 1. **Create a release to be imported into other Terraform projects:**
     ```bash
     git tag
-    git tag -a 1.0.8 -m "Release version 1.0.8"
+    git tag -a 1.0.9 -m "Fix: Change the default network from vmbr101 (JumpServer) to vmbr2 (VMs Network)."
     git push --tags
     ```
 
